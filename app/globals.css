@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+   Palette is intentionally restricted to black / white / grayscale per the
+   brief. "Black" and "white" are both slightly off pure values — a warmer,
+   softer register borrowed from print and dial-face design rather than
+   screen defaults.
+--------------------------------------------------------------------------- */
+
+:root {
+  /* Core surfaces */
+  --color-black: #0a0a0a;
+  --color-black-soft: #121212;
+  --color-white: #f6f5f2;
+  --color-white-soft: #ece9e3;
+
+  /* Text on black */
+  --color-ink-on-black: #f6f5f2;
+  --color-muted-on-black: #8f8f8c;
+
+  /* Text on white */
+  --color-ink-on-white: #141414;
+  --color-muted-on-white: #6b6b68;
+
+  /* Dividers / hairlines */
+  --color-hairline-on-black: rgba(246, 245, 242, 0.14);
+  --color-hairline-on-white: rgba(10, 10, 10, 0.12);
+
+  /* Sparingly-used metallic accent — watch-dial silver, never a color accent */
+  --color-silver: #b8b8b3;
+
+  /* Sparingly-used yellow accent for hover states, active nav, and details */
+  --color-yellow: #facc15;
+  --color-yellow-muted: rgba(250, 204, 21, 0.15);
+  --color-yellow-glow: rgba(250, 204, 21, 0.35);
+
+  /* Fonts (populated via next/font in layout.tsx) */
+  --font-display: "Bodoni Moda", "Times New Roman", serif;
+  --font-sans: "Inter", -apple-system, sans-serif;
+
+  /* Layout */
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --content-max: 1440px;
+
+  /* Motion safety net — overridden per-component but present globally */
+  --motion-duration-base: 1;
+}
+
+::selection {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+}
+
+@media (pointer: fine) {
+
+  html,
+  body,
+  button,
+  a,
+  input,
+  textarea,
+  [role="button"] {
+    cursor: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration-base: 0;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-black);
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-black);
+  color: var(--color-ink-on-black);
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1, "case" 1;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Accessible focus state — visible, not decorative */
+:focus-visible {
+  outline: 1px solid var(--color-silver);
+  outline-offset: 4px;
+}
+
+/* ---------------------------------------------------------------------------
+   Typography scale
+   Serif = identity/personality. Sans = function/information.
+   Fluid clamp() sizing keeps the hierarchy consistent from mobile to desktop
+   without breakpoint-specific overrides.
+--------------------------------------------------------------------------- */
+
+.text-display-xl {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.75rem, 8vw + 1rem, 8rem);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+}
+
+.text-display-lg {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw + 1rem, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+}
+
+.text-display-md {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2vw + 1rem, 2.5rem);
+  line-height: 1.08;
+}
+
+.text-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 0.4vw + 0.85rem, 1.0625rem);
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+.text-meta {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.text-nav {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+/* ---------------------------------------------------------------------------
+   Layout primitives
+--------------------------------------------------------------------------- */
+
+.container-edit {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.hairline-top {
+  border-top: 1px solid var(--color-hairline-on-black);
+}
+
+.hairline-bottom {
+  border-bottom: 1px solid var(--color-hairline-on-black);
+}
+
+.on-white .hairline-top {
+  border-top-color: var(--color-hairline-on-white);
+}
+
+.on-white .hairline-bottom {
+  border-bottom-color: var(--color-hairline-on-white);
+}
+
+.on-white {
+  background: var(--color-white);
+  color: var(--color-ink-on-white);
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
