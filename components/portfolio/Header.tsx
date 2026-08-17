@@ -89,15 +89,15 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={`group relative text-meta transition-colors py-1 flex items-center gap-1.5 ${isActive
-                    ? "text-white font-semibold"
-                    : "text-[color:var(--color-muted-on-black)] hover:text-white"
+                  ? "text-white font-semibold"
+                  : "text-[color:var(--color-muted-on-black)] hover:text-white"
                   }`}
               >
                 {/* Active/Hover Pixel Dot Indicator */}
                 <span
                   className={`h-1 w-1 transition-all ${isActive
-                      ? "bg-white scale-100"
-                      : "bg-transparent scale-0 group-hover:bg-white group-hover:scale-100"
+                    ? "bg-white scale-100"
+                    : "bg-transparent scale-0 group-hover:bg-white group-hover:scale-100"
                     }`}
                 />
                 <span>{item.label}</span>

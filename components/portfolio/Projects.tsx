@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 interface Project {
   number: string;
   title: string;

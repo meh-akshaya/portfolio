@@ -1,5 +1,6 @@
 "use client";
 
+
 interface TimelineItem {
   period: string;
   role: string;

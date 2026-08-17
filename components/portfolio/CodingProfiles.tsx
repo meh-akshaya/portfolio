@@ -42,7 +42,7 @@ export function CodingProfiles() {
   const [ghData, setGhData] = useState<GithubData | null>(null);
   const [ccData, setCcData] = useState<CodeChefData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<"ALL" | "GITHUB" | "CODEFORCES" | "CODECHEF">("ALL");
+  const [activeTab, setActiveTab] = useState<"ALL" | "GITHUB" | "LINKEDIN" | "CODEFORCES" | "CODECHEF">("ALL");
 
   const fetchData = async () => {
     setLoading(true);
@@ -99,7 +99,7 @@ export function CodingProfiles() {
             <span>02 &bull; TECHNICAL PROFILES &amp; METRICS</span>
           </div>
           <h2 className="text-display-md text-white">
-            CODING DASHBOARD
+            CODING &amp; PROFESSIONAL PROFILES
           </h2>
         </div>
 
@@ -116,7 +116,7 @@ export function CodingProfiles() {
 
       {/* Filter Tabs */}
       <div className="flex items-center gap-3 mb-10 overflow-x-auto pb-2 no-scrollbar font-mono text-xs">
-        {(["ALL", "GITHUB", "CODEFORCES", "CODECHEF"] as const).map((tab) => (
+        {(["ALL", "GITHUB", "LINKEDIN", "CODEFORCES", "CODECHEF"] as const).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -223,6 +223,78 @@ export function CodingProfiles() {
                       alt="GitHub Contribution Heatmap"
                       className="w-full h-auto opacity-100 transition-opacity"
                     />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ================= LINKEDIN PROFILE ================= */}
+        {(activeTab === "ALL" || activeTab === "LINKEDIN") && (
+          <div
+            data-cursor="view"
+            className="border border-[color:var(--color-border-hairline)] bg-[#0f1419] rounded-lg overflow-hidden font-sans transition-all duration-300 hover:border-white/40"
+          >
+            {/* LinkedIn Header Navbar */}
+            <div className="bg-[#181e25] px-6 py-3.5 border-b border-[#2d3748] flex items-center justify-between font-mono text-xs text-[#a0aec0]">
+              <div className="flex items-center gap-3">
+                <svg className="h-5 w-5 fill-current text-white" viewBox="0 0 24 24">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.78a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28Z" />
+                </svg>
+                <span className="font-semibold text-white">linkedin.com / in / meh-akshaya</span>
+              </div>
+              <a
+                href="https://www.linkedin.com/in/meh-akshaya/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#2b3748] hover:bg-[#3b4a5e] text-white border border-[#4a5568] px-3 py-1.5 rounded transition-colors text-xs font-mono"
+              >
+                OPEN ON LINKEDIN ↗
+              </a>
+            </div>
+
+            {/* LinkedIn Profile Content */}
+            <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div className="md:col-span-1 flex flex-col items-start gap-4">
+                <div className="relative h-24 w-24 rounded-full overflow-hidden border-2 border-[#4a5568] bg-black">
+                  <Image
+                    src="/images/profile.jpg"
+                    alt="Akshaya Verma LinkedIn"
+                    width={96}
+                    height={96}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">Akshaya Verma</h3>
+                  <p className="text-xs text-[#a0aec0] font-mono">@meh-akshaya &bull; LinkedIn</p>
+                </div>
+                <div className="text-xs text-[#a0aec0] font-mono space-y-1">
+                  <p>📍 Bhopal, Madhya Pradesh, India</p>
+                  <p>🎓 Student at VIT Bhopal University</p>
+                </div>
+              </div>
+
+              <div className="md:col-span-3 flex flex-col gap-5 justify-center">
+                <div className="bg-[#181e25] p-5 rounded-md border border-[#2d3748] space-y-3 font-mono text-xs">
+                  <p className="text-[#a0aec0] uppercase tracking-wider text-[10px]">Professional Focus &amp; Network</p>
+                  <p className="text-white font-sans text-sm leading-relaxed">
+                    Software Engineer &amp; Full-Stack Builder. Passionate about building high-performance web applications, distributed systems, and modern user interfaces.
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-2 text-[11px]">
+                    <span className="border border-[#4a5568] bg-[#0f1419] px-2.5 py-1 text-white">
+                      Full-Stack Engineering
+                    </span>
+                    <span className="border border-[#4a5568] bg-[#0f1419] px-2.5 py-1 text-white">
+                      React / Next.js
+                    </span>
+                    <span className="border border-[#4a5568] bg-[#0f1419] px-2.5 py-1 text-white">
+                      Node.js / Express
+                    </span>
+                    <span className="border border-[#4a5568] bg-[#0f1419] px-2.5 py-1 text-white">
+                      System Design
+                    </span>
                   </div>
                 </div>
               </div>
