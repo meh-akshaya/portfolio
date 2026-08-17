@@ -47,17 +47,27 @@ export function Hero() {
             Currently, I live in Bhopal as a final-year student at VIT University. I love building some of the hundreds of ideas that cross my mind every day.
           </p>
           <p>
-            I&rsquo;ve featured a few of them in the projects section of my portfolio — if you&rsquo;re interested, do check them out!
-          </p>
-          <p className="text-[color:var(--color-muted-on-black)] font-mono text-sm sm:text-base pt-2">
-            You can send me a message{" "}
-            <a
-              href="mailto:connect.akshayaverma@gmail.com"
-              className="text-white underline underline-offset-4 hover:opacity-80 transition-opacity font-semibold"
+            I&rsquo;ve featured a few of them in the{" "}
+            <Link
+              href="/projects"
+              className="font-bold text-white underline underline-offset-4 hover:opacity-80 transition-opacity"
             >
-              here &rarr;
-            </a>
+              projects section
+            </Link>{" "}
+            of my portfolio — if you&rsquo;re interested, do check them out!
           </p>
+          <div className="pt-2 text-[color:var(--color-muted-on-black)] font-mono text-sm sm:text-base space-y-1">
+            <p>Got an idea? Let's talk.</p>
+            <p>
+              You can{" "}
+              <a
+                href="mailto:connect.akshayaverma@gmail.com"
+                className="text-white underline underline-offset-4 hover:opacity-80 transition-opacity font-semibold"
+              >
+                send me a message here &rarr;
+              </a>
+            </p>
+          </div>
         </motion.div>
 
         {/* Page Shortcut Buttons */}

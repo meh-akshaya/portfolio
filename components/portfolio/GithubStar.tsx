@@ -15,15 +15,19 @@ export function GithubStar() {
           OPEN SOURCE &amp; REPOSITORY
         </p>
 
-        <h3 className="font-[family-name:var(--font-display)] text-2xl sm:text-4xl font-medium text-[color:var(--color-ink-on-black)] max-w-xl mx-auto">
-          If you enjoy this portfolio interface, consider leaving a star.
+        <h3 className="font-[family-name:var(--font-display)] text-2xl sm:text-4xl font-medium text-[color:var(--color-ink-on-black)] max-w-2xl mx-auto space-y-2">
+          <span className="block">Don&apos;t mind if you reuse it :)</span>
+          <span className="block text-lg sm:text-2xl text-[color:var(--color-muted-on-black)] font-normal">
+            Just leave a ⭐ and give a little credit.
+          </span>
         </h3>
 
         <div className="mt-8 flex justify-center">
           <a
-            href="https://github.com"
+            href="https://github.com/meh-akshaya"
             target="_blank"
             rel="noopener noreferrer"
+            data-cursor="magnetic"
             className="inline-flex items-center gap-3 border border-[color:var(--color-hairline-on-black)] bg-black px-6 py-4 text-nav text-[color:var(--color-ink-on-black)] transition-all duration-300 hover:border-white hover:text-white"
           >
             <span className="text-white text-lg">★</span>
@@ -64,7 +68,7 @@ export function GithubStar() {
           </a>
           <span>&middot;</span>
           <a
-            href="mailto:contact@akshaya.dev"
+            href="mailto:connect.akshayaverma@gmail.com"
             className="hover:text-white transition-colors"
           >
             EMAIL
