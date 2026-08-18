@@ -10,21 +10,7 @@ interface TimelineItem {
 
 const TIMELINE_DATA: TimelineItem[] = [
   {
-    period: "2024 — PRESENT",
-    role: "Full-Stack Software Engineer & Builder",
-    organization: "Independent / Project Engineering",
-    description:
-      "Designing scalable React/Next.js architectures, real-time backend systems, and custom UI engines. Focused on low-latency interfaces and state machines.",
-  },
-  {
-    period: "2022 — 2024",
-    role: "Frontend Engineer & Interface Developer",
-    organization: "Digital Products & Web Lab",
-    description:
-      "Crafted responsive component libraries, design systems, and client interfaces. Optimized core web vitals and cross-browser rendering.",
-  },
-  {
-    period: "2022 — 2026",
+    period: "2023 — 2027",
     role: "B.Tech Computer Science & Engineering",
     organization: "VIT University, Bhopal",
     description:
