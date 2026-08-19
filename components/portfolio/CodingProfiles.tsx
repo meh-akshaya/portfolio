@@ -350,6 +350,55 @@ export function CodingProfiles() {
                     <span className="text-[#888888]">Country:</span>
                     <span className="text-white">India 🇮🇳</span>
                   </p>
+
+                  {/* League Progress Bar */}
+                  {(() => {
+                    const rating = cfData?.rating ?? 819;
+                    const LEAGUES = [
+                      { name: "Newbie", min: 0, max: 1199, nextName: "Pupil", nextRating: 1200 },
+                      { name: "Pupil", min: 1200, max: 1399, nextName: "Specialist", nextRating: 1400 },
+                      { name: "Specialist", min: 1400, max: 1599, nextName: "Expert", nextRating: 1600 },
+                      { name: "Expert", min: 1600, max: 1899, nextName: "Candidate Master", nextRating: 1900 },
+                      { name: "Candidate Master", min: 1900, max: 2099, nextName: "Master", nextRating: 2100 },
+                      { name: "Master", min: 2100, max: 2299, nextName: "International Master", nextRating: 2300 },
+                      { name: "International Master", min: 2300, max: 2399, nextName: "Grandmaster", nextRating: 2400 },
+                      { name: "Grandmaster", min: 2400, max: 2599, nextName: "International Grandmaster", nextRating: 2600 },
+                      { name: "International Grandmaster", min: 2600, max: 2999, nextName: "Legendary Grandmaster", nextRating: 3000 },
+                    ];
+
+                    const curLeague = LEAGUES.find((l) => rating >= l.min && rating <= l.max) || LEAGUES[0];
+                    const range = curLeague.nextRating - curLeague.min;
+                    const progress = rating - curLeague.min;
+                    const progressPercent = Math.min(100, Math.max(0, Math.round((progress / range) * 100)));
+                    const remainingPercent = 100 - progressPercent;
+                    const pointsNeeded = Math.max(0, curLeague.nextRating - rating);
+
+                    return (
+                      <div className="mt-4 pt-4 border-t border-[#333333] space-y-2">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-[#888888]">
+                            League Goal: <strong className="text-white">{curLeague.nextName}</strong> ({curLeague.nextRating} pts)
+                          </span>
+                          <span className="text-white font-bold bg-[#222222] border border-[#444444] px-2 py-0.5 rounded text-[11px]">
+                            {remainingPercent}% LEFT TO {curLeague.nextName.toUpperCase()}
+                          </span>
+                        </div>
+
+                        {/* Visual Progress Bar Track */}
+                        <div className="h-2.5 w-full bg-[#222222] rounded-full border border-[#444444] overflow-hidden relative">
+                          <div
+                            className="h-full bg-gradient-to-r from-gray-400 to-white transition-all duration-700 rounded-full"
+                            style={{ width: `${progressPercent}%` }}
+                          />
+                        </div>
+
+                        <div className="flex items-center justify-between text-[11px] text-[#888888] pt-0.5">
+                          <span>{progressPercent}% completed ({rating} pts)</span>
+                          <span>{pointsNeeded} pts remaining</span>
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               </div>
 
