@@ -6,7 +6,8 @@ interface Project {
   number: string;
   title: string;
   category: string;
-  description: string;
+  description?: string;
+  bullets?: string[];
   tags: string[];
   liveUrl: string;
   githubUrl: string;
@@ -25,11 +26,25 @@ const PROJECTS_DATA: Project[] = [
   },
   {
     number: "02",
-    title: "AURA ARCHITECTURE",
-    category: "Design System & UI Component Lab",
+    title: "BREAKCASE",
+    category: "DSA/CP Error Hunting Platform",
     description:
-      "Minimalist design system with fluid typography tokens, low-latency animations, and strict monochrome color scales.",
-    tags: ["TypeScript", "Tailwind v4", "Motion", "CSS Variables"],
+      "A competitive programming platform where users discover valid counterexamples to break seemingly correct C++17 solutions.",
+    bullets: [
+      "Built a competitive programming platform where users find valid counterexamples that break seemingly correct C++17 solutions",
+      "Implemented interactive problem rendering, Monaco code viewing, input validation, and progress tracking with a React/TypeScript frontend and Express/TypeScript backend",
+      "Built a server-side C++17 execution pipeline using g++ -O2, Node.js child processes, execution timeouts, and output limits for counterexample verification",
+    ],
+    tags: [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Node.js",
+      "Express",
+      "Prisma",
+      "C++17",
+    ],
     liveUrl: "#",
     githubUrl: "#",
   },
@@ -89,9 +104,27 @@ export function Projects() {
 
             {/* Description & Tech Tags */}
             <div className="mt-6 pl-0 sm:pl-16 max-w-3xl">
-              <p className="text-body text-[color:var(--color-muted-on-black)] group-hover:text-[color:var(--color-white-soft)] transition-colors leading-relaxed">
-                {project.description}
-              </p>
+              {project.description && (
+                <p className="text-body text-[color:var(--color-muted-on-black)] group-hover:text-[color:var(--color-white-soft)] transition-colors leading-relaxed mb-4">
+                  {project.description}
+                </p>
+              )}
+
+              {project.bullets && project.bullets.length > 0 && (
+                <ul className="space-y-2.5 mb-5">
+                  {project.bullets.map((bullet, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-3 text-sm text-[color:var(--color-muted-on-black)] group-hover:text-[color:var(--color-white-soft)] transition-colors leading-relaxed"
+                    >
+                      <span className="text-[color:var(--color-muted-on-black)] group-hover:text-white transition-colors select-none mt-1.5 text-[8px]">
+                        ■
+                      </span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
               {/* Tech Stack Pills */}
               <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -111,3 +144,4 @@ export function Projects() {
     </section>
   );
 }
+

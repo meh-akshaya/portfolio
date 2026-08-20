@@ -14,8 +14,8 @@ const SESSION_KEY = "akshaya-intro-seen";
 
 interface IntroSequenceProps {
   children:
-    | React.ReactNode
-    | ((props: { onReplayIntro: () => void }) => React.ReactNode);
+  | React.ReactNode
+  | ((props: { onReplayIntro: () => void }) => React.ReactNode);
 }
 
 export function IntroSequence({ children }: IntroSequenceProps) {
