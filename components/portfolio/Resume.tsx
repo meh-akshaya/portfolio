@@ -20,7 +20,7 @@ interface Achievement {
 }
 
 const SKILL_CATEGORIES: SkillCategory[] = [
-  { title: "Languages", skills: "C++, JavaScript" },
+  { title: "Languages", skills: "C++" },
   {
     title: "Backend",
     skills:
@@ -30,7 +30,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   { title: "Frontend", skills: "React.js, Tailwind CSS" },
   {
     title: "Tools",
-    skills: "Git, GitHub, VS Code, AWS (EC2, S3, RDS, IAM, VPC)",
+    skills: "Git, GitHub, VS Code",
   },
 ];
 
