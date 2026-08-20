@@ -470,9 +470,9 @@ export function CodingProfiles() {
                   {/* Rating Box */}
                   <div className="bg-[#0b0b0b] p-5 rounded border border-[#262626] text-center">
                     <p className="text-[10px] font-mono text-[#888888] uppercase tracking-wider mb-1">CodeChef Rating</p>
-                    <p className="text-3xl font-extrabold text-white">{ccData?.rating ?? 1194}</p>
+                    <p className="text-3xl font-extrabold text-white">{ccData?.rating ?? 1217}</p>
                     <p className="text-xs font-mono text-[#aaaaaa] mt-1">({ccData?.division || "Div 4"}) &bull; {ccData?.stars || "1★"}</p>
-                    <p className="text-[10px] font-mono text-[#666666] mt-2">Highest Rating: {ccData?.highestRating ?? 1194}</p>
+                    <p className="text-[10px] font-mono text-[#666666] mt-2">Highest Rating: {ccData?.highestRating ?? 1217}</p>
                   </div>
 
                   {/* Global Rank */}

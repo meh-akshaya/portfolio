@@ -73,7 +73,7 @@ const ACHIEVEMENTS: Achievement[] = [
   {
     title: "Competitive Programming",
     description:
-      "Participated in 20+ contests across CodeChef and Codeforces, achieving a CodeChef rating of 1215 and a Codeforces rating of 850",
+      "Participated in 20+ contests across CodeChef and Codeforces, achieving a CodeChef rating of 1217 and a Codeforces rating of 850",
   },
 ];
 
@@ -195,12 +195,12 @@ export function Resume() {
               </a>
               <span>&bull;</span>
               <a
-                href="https://github.com/meh_akshaya"
+                href="https://github.com/meh-akshaya"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-white underline underline-offset-2"
               >
-                github.com/meh_akshaya
+                github.com/meh-akshaya
               </a>
             </div>
           </div>

@@ -22,8 +22,8 @@ export async function GET(request: Request) {
         const countryRankMatch = html.match(/Country Rank:[\s\S]*?<strong>(\d+)<\/strong>/i) || html.match(/country_rank:\s*['"]?(\d+)/i);
         const contestsMatch = html.match(/No\. of Contests Participated:\s*<b>(\d+)<\/b>/i) || html.match(/contests:\s*(\d+)/i);
 
-        const currentRating = ratingMatch ? parseInt(ratingMatch[1], 10) : 1194;
-        const highestRating = highestRatingMatch ? parseInt(highestRatingMatch[1], 10) : 1194;
+        const currentRating = ratingMatch ? parseInt(ratingMatch[1], 10) : 1217;
+        const highestRating = highestRatingMatch ? parseInt(highestRatingMatch[1], 10) : 1217;
 
         // Calculate Division automatically
         let division = "Div 4";
@@ -61,8 +61,8 @@ export async function GET(request: Request) {
     return NextResponse.json({
       name: "akshayaverma",
       handle: "meh_akshaya",
-      rating: 1194,
-      highestRating: 1194,
+      rating: 1217,
+      highestRating: 1217,
       division: "Div 4",
       stars: "1★",
       globalRank: 88381,
