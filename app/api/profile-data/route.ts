@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const platform = searchParams.get("platform");
@@ -11,16 +13,27 @@ export async function GET(request: Request) {
           "User-Agent":
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         },
-        next: { revalidate: 1800 },
+        next: { revalidate: 60 },
       });
 
       if (res.ok) {
         const html = await res.text();
-        const ratingMatch = html.match(/rating-number">(\d+)/i) || html.match(/rating:\s*['"]?(\d+)/i);
-        const highestRatingMatch = html.match(/Highest Rating\s*\(?(\d+)\)?/i);
-        const globalRankMatch = html.match(/Global Rank:[\s\S]*?<strong>(\d+)<\/strong>/i) || html.match(/global_rank:\s*['"]?(\d+)/i);
-        const countryRankMatch = html.match(/Country Rank:[\s\S]*?<strong>(\d+)<\/strong>/i) || html.match(/country_rank:\s*['"]?(\d+)/i);
-        const contestsMatch = html.match(/No\. of Contests Participated:\s*<b>(\d+)<\/b>/i) || html.match(/contests:\s*(\d+)/i);
+        const ratingMatch =
+          html.match(/rating-number"[\s\S]*?>\s*(\d+)/i) ||
+          html.match(/rating-number">(\d+)/i) ||
+          html.match(/rating:\s*['"]?(\d+)/i);
+        const highestRatingMatch =
+          html.match(/Highest Rating\s*\(?(\d+)\)?/i) ||
+          html.match(/Highest Rating\s*(\d+)/i);
+        const globalRankMatch =
+          html.match(/Global Rank:[\s\S]*?<strong>(\d+)<\/strong>/i) ||
+          html.match(/global_rank:\s*['"]?(\d+)/i);
+        const countryRankMatch =
+          html.match(/Country Rank:[\s\S]*?<strong>(\d+)<\/strong>/i) ||
+          html.match(/country_rank:\s*['"]?(\d+)/i);
+        const contestsMatch =
+          html.match(/No\. of Contests Participated:\s*<b>(\d+)<\/b>/i) ||
+          html.match(/contests:\s*(\d+)/i);
 
         const currentRating = ratingMatch ? parseInt(ratingMatch[1], 10) : 1217;
         const highestRating = highestRatingMatch ? parseInt(highestRatingMatch[1], 10) : 1217;

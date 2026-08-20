@@ -25,7 +25,7 @@ export function GithubStar() {
         {/* Action CTAs: Star on GitHub & Connect on LinkedIn */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <a
-            href="https://github.com/meh-akshaya"
+            href="https://github.com/meh-akshaya/portfolio"
             target="_blank"
             rel="noopener noreferrer"
             data-cursor="magnetic"

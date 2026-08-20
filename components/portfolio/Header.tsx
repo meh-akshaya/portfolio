@@ -10,7 +10,7 @@ const NAV_ITEMS = [
   { label: "PROJECTS", href: "/projects" },
   { label: "CODING", href: "/coding" },
   { label: "RESUME", href: "/resume" },
-  { label: "★", href: "https://github.com", external: true },
+  { label: "★", href: "https://github.com/meh-akshaya/portfolio", external: true },
 ];
 
 export function Header() {
