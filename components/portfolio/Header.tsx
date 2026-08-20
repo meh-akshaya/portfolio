@@ -71,15 +71,15 @@ export function Header() {
             if (item.external) {
               return (
                 <a
-                  key={item.label}
+                  key={item.href}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Star Portfolio on GitHub"
                   className="group relative text-meta transition-colors py-1 flex items-center gap-1.5 text-[color:var(--color-muted-on-black)] hover:text-white"
                 >
                   <span className="h-1 w-1 bg-transparent group-hover:bg-white group-hover:scale-100 transition-all" />
-                  <span>{item.label}</span>
-                  <span className="text-white">★</span>
+                  <span className="text-white text-base">★</span>
                 </a>
               );
             }
