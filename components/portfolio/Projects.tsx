@@ -21,8 +21,8 @@ const PROJECTS_DATA: Project[] = [
     description:
       "An anonymous discussion platform built around persistent personas with encrypted identity layers.",
     tags: ["React", "Node.js", "Express", "PostgreSQL", "Prisma", "JWT"],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://persona.akshayaverma.dev/",
+    githubUrl: "https://github.com/meh-akshaya/persona",
   },
   {
     number: "02",
@@ -45,8 +45,8 @@ const PROJECTS_DATA: Project[] = [
       "Prisma",
       "C++17",
     ],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://breakcase.akshayaverma.dev/",
+    githubUrl: "https://github.com/meh-akshaya/BreakCase",
   },
 ];
 
@@ -76,30 +76,47 @@ export function Projects() {
             className="group border-t border-[color:var(--color-hairline-on-black)] py-10 transition-colors duration-300"
           >
             <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
-              {/* Project Identity & Number */}
+              {/* Project Identity & Number (Title redirects to Live Demo) */}
               <div className="flex items-baseline gap-6 sm:gap-10">
                 <span className="font-mono text-sm text-[color:var(--color-muted-on-black)] group-hover:text-[color:var(--color-ink-on-black)] transition-colors">
                   {project.number}
                 </span>
                 <div>
-                  <h3 className="text-display-md text-[color:var(--color-white-soft)] tracking-tight transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:text-white origin-left">
-                    {project.title}
-                  </h3>
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block group/title"
+                    title={`Open Live Demo (${project.liveUrl})`}
+                  >
+                    <h3 className="text-display-md text-[color:var(--color-white-soft)] tracking-tight transition-all duration-300 ease-out group-hover/title:scale-[1.01] group-hover/title:text-white group-hover/title:underline underline-offset-4 origin-left flex items-center gap-2.5">
+                      <span>{project.title}</span>
+                      <span className="text-sm text-[color:var(--color-muted-on-black)] group-hover/title:text-white transition-colors">
+                        ↗
+                      </span>
+                    </h3>
+                  </a>
                   <p className="text-meta mt-1 text-[color:var(--color-muted-on-black)] font-mono text-[11px] group-hover:text-[color:var(--color-white-soft)] transition-colors">
                     {project.category}
                   </p>
                 </div>
               </div>
 
-              {/* Arrow CTA */}
-              <div className="flex items-center gap-2 self-end lg:self-center">
-                <span className="text-meta font-mono text-[11px] text-[color:var(--color-muted-on-black)] opacity-0 group-hover:opacity-100 transition-opacity">
-                  EXPLORE
+              {/* Explore CTA (Redirects to GitHub Repo) */}
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 self-end lg:self-center group/explore py-1 px-3 border border-[color:var(--color-hairline-on-black)] bg-black hover:border-white transition-all"
+                title={`Explore GitHub Repo (${project.githubUrl})`}
+              >
+                <span className="text-meta font-mono text-[11px] text-[color:var(--color-muted-on-black)] group-hover/explore:text-white transition-colors">
+                  EXPLORE REPO
                 </span>
-                <span className="text-xl text-[color:var(--color-muted-on-black)] group-hover:text-white transition-transform duration-300 group-hover:translate-x-1.5">
+                <span className="text-xl text-[color:var(--color-muted-on-black)] group-hover/explore:text-white transition-transform duration-300 group-hover/explore:translate-x-1.5">
                   &rarr;
                 </span>
-              </div>
+              </a>
             </div>
 
             {/* Description & Tech Tags */}
@@ -137,6 +154,29 @@ export function Projects() {
                   </span>
                 ))}
               </div>
+
+              {/* Quick Action Links: Live Demo & GitHub Repo */}
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs text-white border border-white/30 bg-white/10 px-3.5 py-1.5 hover:bg-white hover:text-black transition-all flex items-center gap-1.5"
+                >
+                  <span>LIVE DEMO</span>
+                  <span>↗</span>
+                </a>
+
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs text-[color:var(--color-muted-on-black)] border border-[color:var(--color-hairline-on-black)] bg-black px-3.5 py-1.5 hover:border-white hover:text-white transition-all flex items-center gap-1.5"
+                >
+                  <span>GITHUB REPO</span>
+                  <span>↗</span>
+                </a>
+              </div>
             </div>
           </div>
         ))}
@@ -144,4 +184,5 @@ export function Projects() {
     </section>
   );
 }
+
 
