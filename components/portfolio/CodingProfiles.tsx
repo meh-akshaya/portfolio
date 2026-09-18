@@ -219,7 +219,7 @@ export function CodingProfiles() {
                   <div className="border border-[#30363d] bg-[#0d1117] p-4 rounded-md overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src="https://ghchart.rshah.org/58a6ff/meh-akshaya"
+                      src="/api/profile-data?platform=github-heatmap"
                       alt="GitHub Contribution Heatmap"
                       className="w-full h-auto opacity-100 transition-opacity"
                     />

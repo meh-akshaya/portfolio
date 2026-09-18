@@ -11,6 +11,8 @@ interface ResumeProject {
   title: string;
   subtitle: string;
   tech: string;
+  liveUrl?: string;
+  githubUrl?: string;
   bullets: string[];
 }
 
@@ -39,6 +41,8 @@ const RESUME_PROJECTS: ResumeProject[] = [
     title: "Persona",
     subtitle: "Full-Stack Anonymous Community Platform",
     tech: "Node.js, Express, PostgreSQL, Prisma, React, JWT",
+    liveUrl: "https://persona.akshayaverma.dev/",
+    githubUrl: "https://github.com/meh-akshaya/persona",
     bullets: [
       "Architected a full-stack anonymous discussion platform across 7 seeded communities (Career, Tech, Startups, Finance, etc.), giving users persistent pseudonymous identities without exposing real accounts",
       "Designed a self-referencing Prisma comment model to support threaded, nested discussions, and wrapped reaction and trust-score updates in atomic $transaction blocks to keep scores consistent under concurrent writes",
@@ -51,6 +55,8 @@ const RESUME_PROJECTS: ResumeProject[] = [
     title: "BreakCase",
     subtitle: "DSA/CP Error Hunting Platform",
     tech: "React 19, TypeScript, Vite, Tailwind CSS, Node.js, Express, Prisma, C++17",
+    liveUrl: "https://breakcase.akshayaverma.dev/",
+    githubUrl: "https://github.com/meh-akshaya/BreakCase",
     bullets: [
       "Built a competitive programming platform where users find valid counterexamples that break seemingly correct C++17 solutions",
       "Implemented interactive problem rendering, Monaco code viewing, input validation, and progress tracking with a React/TypeScript frontend and Express/TypeScript backend",
@@ -259,15 +265,42 @@ export function Resume() {
                   <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                     <div>
                       <h4 className="text-lg font-bold text-white">
-                        {p.title}{" "}
+                        {p.liveUrl ? (
+                          <a
+                            href={p.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline underline-offset-4 inline-flex items-center gap-1.5"
+                            title={`Open Live Demo (${p.liveUrl})`}
+                          >
+                            <span>{p.title}</span>
+                            <span className="text-xs text-[color:var(--color-muted-on-black)]">
+                              ↗
+                            </span>
+                          </a>
+                        ) : (
+                          p.title
+                        )}{" "}
                         <span className="text-sm font-normal text-[color:var(--color-muted-on-black)]">
                           | {p.subtitle}
                         </span>
                       </h4>
                     </div>
-                    <span className="font-mono text-[11px] text-[color:var(--color-muted-on-black)] bg-black px-2 py-0.5 border border-[color:var(--color-hairline-on-black)] self-start sm:self-auto">
-                      {p.tech}
-                    </span>
+                    {p.githubUrl ? (
+                      <a
+                        href={p.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-mono text-[11px] text-[color:var(--color-muted-on-black)] bg-black px-2 py-0.5 border border-[color:var(--color-hairline-on-black)] hover:border-white hover:text-white transition-colors self-start sm:self-auto"
+                        title={`View GitHub Repository (${p.githubUrl})`}
+                      >
+                        {p.tech} ↗
+                      </a>
+                    ) : (
+                      <span className="font-mono text-[11px] text-[color:var(--color-muted-on-black)] bg-black px-2 py-0.5 border border-[color:var(--color-hairline-on-black)] self-start sm:self-auto">
+                        {p.tech}
+                      </span>
+                    )}
                   </div>
 
                   <ul className="space-y-2 pl-1">

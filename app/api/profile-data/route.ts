@@ -6,6 +6,34 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const platform = searchParams.get("platform");
 
+  if (platform === "github-heatmap") {
+    try {
+      const res = await fetch("https://ghchart.rshah.org/58a6ff/meh-akshaya", {
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        },
+        next: { revalidate: 3600 },
+      });
+
+      if (res.ok) {
+        let svg = await res.text();
+        // Replace light empty rect fills with dark shade (#161b22) matching dark bg (#0d1117)
+        svg = svg.replace(/fill:#(EEEEEE|eeeeee|ebedf0|ffffff|e0e0e0)/gi, "fill:#161b22");
+
+        return new Response(svg, {
+          status: 200,
+          headers: {
+            "Content-Type": "image/svg+xml",
+            "Cache-Control": "public, max-age=3600, s-maxage=3600",
+          },
+        });
+      }
+    } catch {
+      // Fallback
+    }
+  }
+
   if (platform === "codechef") {
     try {
       const res = await fetch("https://www.codechef.com/users/meh_akshaya", {
