@@ -154,7 +154,7 @@ export function Resume() {
 
           {/* Download Action */}
           <a
-            href="/resume.pdf"
+            href="/resume.pdf?v=2"
             download="Akshaya_Verma_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
@@ -179,10 +179,10 @@ export function Resume() {
         <div className="border border-[color:var(--color-hairline-on-black)] bg-neutral-900 p-2 sm:p-4 rounded-sm">
           <div className="flex items-center justify-between pb-3 mb-3 border-b border-[color:var(--color-hairline-on-black)] px-2">
             <span className="font-mono text-xs text-[color:var(--color-muted-on-black)]">
-              PDF VIEWER &bull; public/resume.pdf
+              PDF VIEWER &bull; public/resume.pdf?v=2
             </span>
             <a
-              href="/resume.pdf"
+              href="/resume.pdf?v=2"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-xs text-white hover:underline flex items-center gap-1"
@@ -191,7 +191,7 @@ export function Resume() {
             </a>
           </div>
           <iframe
-            src="/resume.pdf"
+            src="/resume.pdf?v=2"
             className="w-full h-[750px] border border-[color:var(--color-hairline-on-black)] bg-white rounded-sm"
             title="Akshaya Verma Resume PDF"
           />
