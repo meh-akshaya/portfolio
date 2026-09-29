@@ -10,8 +10,10 @@ interface SkillCategory {
 interface ResumeProject {
   title: string;
   subtitle: string;
+  badge?: string;
   tech: string;
   liveUrl?: string;
+  displayUrl?: string;
   githubUrl?: string;
   bullets: string[];
 }
@@ -21,46 +23,80 @@ interface Achievement {
   description: string;
 }
 
+const PROFESSIONAL_SUMMARY =
+  "Final-year B.Tech Computer Science student (Cyber Security) with hands-on experience designing REST APIs and backend services with Node.js, Express, PostgreSQL, and Prisma. Built and deployed a full-stack platform with authentication, access control, and hardened APIs, plus a server-side execution service with process isolation and resource limits. Seeking a Full Stack / Backend Engineering role.";
+
+const EDUCATION_INFO = {
+  institution: "VIT University",
+  location: "Bhopal, MP",
+  period: "2023 — 2027",
+  degree: "B.Tech in Computer Science Engineering (Cyber Security)",
+  cgpa: "8.01 / 10.00",
+  coursework: [
+    "DBMS",
+    "Operating Systems",
+    "Computer Networks",
+    "Software Engineering",
+    "Data Privacy",
+    "Software Vulnerability Testing",
+  ],
+};
+
 const SKILL_CATEGORIES: SkillCategory[] = [
-  { title: "Languages", skills: "C++" },
+  { title: "Languages", skills: "C++, JavaScript, TypeScript" },
   {
-    title: "Backend",
+    title: "Backend & APIs",
     skills:
-      "Node.js, Express.js, Flask, REST APIs, JWT Authentication, Prisma ORM",
+      "Node.js, Express.js, REST APIs, JWT, RBAC, Prisma ORM, Rate Limiting, Security Headers",
   },
-  { title: "Databases", skills: "PostgreSQL, SQLite, Firebase" },
   { title: "Frontend", skills: "React.js, Tailwind CSS" },
+  { title: "Databases", skills: "PostgreSQL, SQLite, Firebase" },
   {
-    title: "Tools",
-    skills: "Git, GitHub, VS Code",
+    title: "Cloud & Tools",
+    skills: "AWS (EC2, S3, RDS, IAM, VPC), Linux, Git, GitHub, Postman",
   },
+  { title: "AI / GenAI", skills: "LLM APIs, RAG, Embeddings" },
 ];
 
 const RESUME_PROJECTS: ResumeProject[] = [
   {
+    title: "CyberSec RAG",
+    subtitle: "AI-Powered Cybersecurity Knowledge Assistant | Backend",
+    badge: "In Development",
+    tech: "Node.js, Express, LLM APIs, RAG, Vector DB",
+    bullets: [
+      "Building a Node.js/Express pipeline that processes documents into chunks and generates embeddings for each chunk.",
+      "Storing embeddings in a vector database for semantic retrieval against incoming natural-language queries.",
+      "Designed a retrieve-then-generate API flow that passes relevant context to an LLM so answers stay grounded in source documents.",
+      "Evaluating prompt injection and over-permissioned tool calling while integrating LLM APIs and tool calling into the backend.",
+    ],
+  },
+  {
     title: "Persona",
-    subtitle: "Full-Stack Anonymous Community Platform",
+    subtitle: "Privacy-Focused Anonymous Community Platform | Full Stack",
     tech: "Node.js, Express, PostgreSQL, Prisma, React, JWT",
     liveUrl: "https://persona.akshayaverma.dev/",
+    displayUrl: "persona.akshayaverma.dev",
     githubUrl: "https://github.com/meh-akshaya/persona",
     bullets: [
-      "Architected a full-stack anonymous discussion platform across 7 seeded communities (Career, Tech, Startups, Finance, etc.), giving users persistent pseudonymous identities without exposing real accounts",
-      "Designed a self-referencing Prisma comment model to support threaded, nested discussions, and wrapped reaction and trust-score updates in atomic $transaction blocks to keep scores consistent under concurrent writes",
-      "Built a pre-save privacy-leak detector that scans post content before persistence, decoupled from publish policy so moderation rules can evolve independently of the write path",
-      "Hardened the API with JWT-based role authentication, Helmet security headers, and express-rate-limit throttling to mitigate abuse and brute-force attempts",
-      "Enforced anonymity at the data layer using Prisma select-level field exclusion (not app-side filtering), with slug-based community routing and idempotent upsert seed scripts for reproducible deploys",
+      "Built and deployed a full-stack community platform with a React frontend and Node.js/Express REST API backend.",
+      "Modeled posts, threaded discussions, reactions, and trust scoring with PostgreSQL and Prisma.",
+      "Implemented JWT authentication and authorization checks to protect user identity and restrict access to resources.",
+      "Hardened the API with rate limiting, Helmet security headers, and Prisma field-level selection to limit abuse and data exposure.",
+      "Added server-side content validation that detects emails, phone numbers, and personal links before persistence.",
     ],
   },
   {
     title: "BreakCase",
-    subtitle: "DSA/CP Error Hunting Platform",
-    tech: "React 19, TypeScript, Vite, Tailwind CSS, Node.js, Express, Prisma, C++17",
+    subtitle: "Secure Code Execution & Counterexample Testing Platform | Full Stack",
+    tech: "React, TypeScript, Node.js, Express, Prisma, C++17",
     liveUrl: "https://breakcase.akshayaverma.dev/",
     githubUrl: "https://github.com/meh-akshaya/BreakCase",
     bullets: [
-      "Built a competitive programming platform where users find valid counterexamples that break seemingly correct C++17 solutions",
-      "Implemented interactive problem rendering, Monaco code viewing, input validation, and progress tracking with a React/TypeScript frontend and Express/TypeScript backend",
-      "Built a server-side C++17 execution pipeline using g++ -O2, Node.js child processes, execution timeouts, and output limits for counterexample verification",
+      "Built a full-stack platform with a React and TypeScript frontend and a Node.js/Express backend that generates counterexamples to expose incorrect logic in C++17 solutions.",
+      "Developed a server-side service that compiles submitted programs and evaluates generated inputs through controlled Node.js child processes.",
+      "Enforced execution timeouts and output limits to prevent runaway execution and uncontrolled output.",
+      "Validated inputs and applied resource constraints to test submissions safely against malformed, excessive, and adversarial inputs.",
     ],
   },
 ];
@@ -68,18 +104,11 @@ const RESUME_PROJECTS: ResumeProject[] = [
 const ACHIEVEMENTS: Achievement[] = [
   {
     title: "Health Hackathon — Finalist",
-    description:
-      "Reached the final round with a mental healthcare platform, out of 100+ competing teams",
-  },
-  {
-    title: "Startup Pitch Competition — 1st Place",
-    description:
-      "Won first place pitching BrightBuddy, a mental wellness platform, against competing teams",
+    description: "Reached the final round among 100+ teams.",
   },
   {
     title: "Competitive Programming",
-    description:
-      "Participated in 20+ contests across CodeChef and Codeforces, achieving a CodeChef rating of 1217 and a Codeforces rating of 850",
+    description: "25+ contests on CodeChef and Codeforces.",
   },
 ];
 
@@ -171,7 +200,7 @@ export function Resume() {
 
       {/* Web Document View Mode */}
       {viewMode === "web" && (
-        <div className="border border-[color:var(--color-hairline-on-black)] bg-[color:var(--color-black-soft)] p-6 sm:p-12 space-y-12">
+        <div className="border border-[color:var(--color-hairline-on-black)] bg-[color:var(--color-black-soft)] p-6 sm:p-12 space-y-10">
           {/* Header Identity */}
           <div className="border-b border-[color:var(--color-hairline-on-black)] pb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div>
@@ -179,7 +208,7 @@ export function Resume() {
                 AKSHAYA VERMA
               </h1>
               <p className="text-meta font-mono text-sm text-[color:var(--color-muted-on-black)] mt-2">
-                B.Tech Computer Science &amp; Engineering &bull; VIT
+                B.Tech Computer Science &amp; Engineering (Cyber Security) &bull; VIT
                 University, Bhopal
               </p>
             </div>
@@ -191,6 +220,13 @@ export function Resume() {
                 className="hover:text-white underline underline-offset-2"
               >
                 akshayaverma.dev
+              </a>
+              <span>&bull;</span>
+              <a
+                href="tel:9685976397"
+                className="hover:text-white underline underline-offset-2"
+              >
+                9685976397
               </a>
               <span>&bull;</span>
               <a
@@ -211,33 +247,51 @@ export function Resume() {
             </div>
           </div>
 
-          {/* 01. Education */}
+          {/* 01. Professional Summary */}
+          <div className="space-y-3">
+            <h3 className="font-mono text-xs text-[color:var(--color-muted-on-black)] tracking-wider uppercase border-b border-[color:var(--color-hairline-on-black)] pb-2">
+              01 &bull; PROFESSIONAL SUMMARY
+            </h3>
+            <p className="text-sm text-[color:var(--color-white-soft)] leading-relaxed pt-1">
+              {PROFESSIONAL_SUMMARY}
+            </p>
+          </div>
+
+          {/* 02. Education */}
           <div className="space-y-4">
             <h3 className="font-mono text-xs text-[color:var(--color-muted-on-black)] tracking-wider uppercase border-b border-[color:var(--color-hairline-on-black)] pb-2">
-              01 &bull; EDUCATION
+              02 &bull; EDUCATION
             </h3>
-            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 pt-2">
-              <div>
-                <h4 className="text-lg font-bold text-white">
-                  VIT University
-                </h4>
-                <p className="text-sm text-[color:var(--color-muted-on-black)]">
-                  B.Tech, Computer Science Engineering — CGPA: 8.01
-                </p>
+            <div className="pt-1 space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+                <div>
+                  <h4 className="text-lg font-bold text-white">
+                    {EDUCATION_INFO.institution}
+                  </h4>
+                  <p className="text-sm text-[color:var(--color-muted-on-black)] font-medium">
+                    {EDUCATION_INFO.degree} &bull;{" "}
+                    <span className="text-white">CGPA: {EDUCATION_INFO.cgpa}</span>
+                  </p>
+                </div>
+                <div className="text-left sm:text-right font-mono text-xs text-[color:var(--color-muted-on-black)]">
+                  <p className="text-white">{EDUCATION_INFO.period}</p>
+                  <p>{EDUCATION_INFO.location}</p>
+                </div>
               </div>
-              <div className="text-right sm:text-right font-mono text-xs text-[color:var(--color-muted-on-black)]">
-                <p className="text-white">2023 &mdash; 2027</p>
-                <p>Bhopal, MP</p>
+
+              <div className="text-xs text-[color:var(--color-muted-on-black)]">
+                <span className="font-mono text-white">Relevant Coursework: </span>
+                {EDUCATION_INFO.coursework.join(", ")}
               </div>
             </div>
           </div>
 
-          {/* 02. Technical Skills */}
+          {/* 03. Technical Skills */}
           <div className="space-y-4">
             <h3 className="font-mono text-xs text-[color:var(--color-muted-on-black)] tracking-wider uppercase border-b border-[color:var(--color-hairline-on-black)] pb-2">
-              02 &bull; TECHNICAL SKILLS
+              03 &bull; TECHNICAL SKILLS
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 pt-1">
               {SKILL_CATEGORIES.map((sc, i) => (
                 <div
                   key={i}
@@ -254,16 +308,16 @@ export function Resume() {
             </div>
           </div>
 
-          {/* 03. Projects */}
+          {/* 04. Technical Projects */}
           <div className="space-y-6">
             <h3 className="font-mono text-xs text-[color:var(--color-muted-on-black)] tracking-wider uppercase border-b border-[color:var(--color-hairline-on-black)] pb-2">
-              03 &bull; PROJECTS
+              04 &bull; TECHNICAL PROJECTS
             </h3>
             <div className="space-y-8">
               {RESUME_PROJECTS.map((p, i) => (
                 <div key={i} className="space-y-3">
                   <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-                    <div>
+                    <div className="flex flex-wrap items-center gap-2">
                       <h4 className="text-lg font-bold text-white">
                         {p.liveUrl ? (
                           <a
@@ -285,7 +339,23 @@ export function Resume() {
                           | {p.subtitle}
                         </span>
                       </h4>
+                      {p.badge && (
+                        <span className="font-mono text-[10px] text-amber-300 bg-amber-950/60 border border-amber-500/40 px-2 py-0.5 rounded-xs">
+                          {p.badge}
+                        </span>
+                      )}
+                      {p.displayUrl && (
+                        <a
+                          href={p.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-[11px] text-white hover:underline"
+                        >
+                          {p.displayUrl}
+                        </a>
+                      )}
                     </div>
+
                     {p.githubUrl ? (
                       <a
                         href={p.githubUrl}
@@ -321,16 +391,18 @@ export function Resume() {
             </div>
           </div>
 
-          {/* 04. Cocurricular */}
+          {/* 05. Achievements */}
           <div className="space-y-4">
             <h3 className="font-mono text-xs text-[color:var(--color-muted-on-black)] tracking-wider uppercase border-b border-[color:var(--color-hairline-on-black)] pb-2">
-              04 &bull; COCURRICULAR &amp; ACHIEVEMENTS
+              05 &bull; ACHIEVEMENTS
             </h3>
-            <div className="space-y-4 pt-2">
+            <div className="space-y-3 pt-1">
               {ACHIEVEMENTS.map((a, i) => (
-                <div key={i} className="space-y-1">
-                  <h4 className="text-sm font-bold text-white">{a.title}</h4>
-                  <p className="text-xs text-[color:var(--color-muted-on-black)] leading-relaxed pl-3 border-l border-[color:var(--color-hairline-on-black)]">
+                <div key={i} className="flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-3">
+                  <h4 className="text-xs font-mono font-bold text-white whitespace-nowrap">
+                    {a.title}:
+                  </h4>
+                  <p className="text-xs text-[color:var(--color-muted-on-black)] leading-relaxed">
                     {a.description}
                   </p>
                 </div>
@@ -342,4 +414,5 @@ export function Resume() {
     </section>
   );
 }
+
 
