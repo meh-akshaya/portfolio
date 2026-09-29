@@ -28,6 +28,11 @@ const inter = localFont({
 export const metadata: Metadata = {
   title: "Akshaya — Portfolio",
   description: "Personal portfolio of Akshaya.",
+  icons: {
+    icon: "/images/profile.jpg",
+    shortcut: "/images/profile.jpg",
+    apple: "/images/profile.jpg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
